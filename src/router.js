@@ -1,38 +1,42 @@
-import Vue from "vue";
+import Vue from 'vue'
 
-import vueRouter from "vue-router";
+import vueRouter from 'vue-router'
 
-Vue.use(vueRouter);
+Vue.use(vueRouter)
 
 const routes = [
   {
-    path: "/",
-    component: () => import("./views/Home/index.vue")
+    path: '/',
+    component: () => import('./views/Home/index.vue')
   },
   {
-    path: "/pingpai",
-    component: () => import("./views/PingPai")
+    path: '/pingpai',
+    component: () => import('./views/PingPai')
   },
   {
-    path: "/dingzhi",
-    component: () => import("./views/DingZhi")
+    path: '/dingzhi',
+    component: () => import('./views/DingZhi')
   },
   {
-    path: "/cars",
-    component: () => import("./views/Cars")
+    path: '/cars',
+    component: () => import('./views/Cars')
   },
   {
-    path: "/login",
-    component: () => import("./views/Login")
+    path: '/login',
+    component: () => import('./views/Login')
   },
   {
-    path: "/me",
-    component: () => import("./views/Me")
+    path: '/me',
+    component: () => import('./views/Me')
+  },
+  {
+    path: '/nav',
+    component: () => import('./views/Nav')
   }
-];
+]
 
 const router = new vueRouter({
   routes
-});
+})
 
-export default router;
+export default router
