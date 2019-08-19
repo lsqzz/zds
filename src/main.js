@@ -1,16 +1,3 @@
-// import Vue from 'vue'
-// import App from './App.vue'
-// import router from './router'
-// import store from './store'
-// import './assets/styles/base.scss'
-// Vue.config.productionTip = false
-
-// new Vue({
-//   router,
-//   store,
-//   render: h => h(App)
-// }).$mount('#app')
-
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
@@ -21,7 +8,9 @@ import {
   List,
   Cell,
   NavBar,
-  Search
+  Search,
+  Swipe,
+  SwipeItem
 } from 'vant'
 import './assets/styles/base.scss'
 
@@ -35,6 +24,8 @@ Vue.use(Tab)
   .use(Cell)
   .use(NavBar)
   .use(Search)
+  .use(Swipe)
+  .use(SwipeItem)
 
 new Vue({
   store,
