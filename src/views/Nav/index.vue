@@ -1,5 +1,9 @@
 <template>
   <div class="page-nav">
-    <h1>我是导航页</h1>
+    <div class="nav_head">
+      <i></i>
+      <div class="nav_head_left"></div>
+      <div class="nav_head_right"></div>
+    </div>
   </div>
 </template>
