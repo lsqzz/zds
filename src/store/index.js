@@ -9,15 +9,19 @@ import home from './modules/home'
 import login from './modules/login'
 import me from './modules/me'
 import pingpai from './modules/pingpai'
+import nav from './modules/nav'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  cars,
-  detail,
-  dingzhi,
-  home,
-  login,
-  me,
-  pingpai
+  modules: {
+    cars,
+    detail,
+    dingzhi,
+    home,
+    login,
+    me,
+    pingpai,
+    nav
+  }
 })
