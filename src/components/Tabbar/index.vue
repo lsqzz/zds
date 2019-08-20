@@ -7,53 +7,49 @@
       </router-link>
     </li>
   </ul>
-
 </template>
 
-
 <script>
-  export default {
-    name: 'Tabbar',
-    props: {
-      tabs: Array
-    }
+export default {
+  name: 'Tabbar',
+  props: {
+    tabs: Array
   }
-
+}
 </script>
 
 <style lang="scss">
-  /* // css 中使用 @ 别名，需要在前面加上一个 ~ 号 */
-  @import '~@/assets/styles/common/mixin.scss';
+/* // css 中使用 @ 别名，需要在前面加上一个 ~ 号 */
+@import '~@/assets/styles/common/mixin.scss';
 
-  .zds-tabbar {
-    /* @include border-top; */
+.zds-tabbar {
+  /* @include border-top; */
+  display: flex;
+  height: 66px;
+  box-sizing: border-box;
+  background: #323232;
+
+  li {
+    flex: 1;
+  }
+
+  a {
     display: flex;
-    height: 72px;
-    box-sizing: border-box;
-    background: #323232;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #ffffff;
 
-    li {
-      flex: 1;
-    }
-
-    a {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-      text-decoration: none;
-      color: #FFFFFF;
-
-      &.router-link-active {
-        color: #ff5f16;
-      }
-    }
-
-    .iconfont {
-      font-size: 22px;
+    &.router-link-active {
+      color: #ff5f16;
     }
   }
 
+  .iconfont {
+    font-size: 30px;
+  }
+}
 </style>
