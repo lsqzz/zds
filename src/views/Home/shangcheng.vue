@@ -7,41 +7,45 @@
       <van-search placeholder="珍珠吊坠" v-model="value" />
       <i class="iconfont icon-zixun"></i>
     </div>
+    <div class="slideshow">
+      <van-swipe :autoplay="3000" indicator-color="white">
+        <van-swipe-item
+          ><img
+            src="http://www.chowtaiseng.com/image/web//upload/article/20190509/2019050913340216.jpg"
+        /></van-swipe-item>
+        <van-swipe-item>
+          <img
+            src="http://www.chowtaiseng.com/image/web//upload/article/20181116/2018111609352673.jpg"
+        /></van-swipe-item>
+        <van-swipe-item
+          ><img
+            src="http://www.chowtaiseng.com/image/web//upload/article/20190814/2019081416402230.jpg"
+        /></van-swipe-item>
+      </van-swipe>
+    </div>
     <div class="tabs">
       <van-tabs>
-        <van-tab title="全部">内容 1</van-tab>
-        <van-tab title="黄金">内容 2</van-tab>
+        <!-- <van-tab title="全部">内容 1</van-tab> -->
+        <van-tab title="黄金"><FlimList /></van-tab>
         <van-tab title="铂金">内容 3</van-tab>
         <van-tab title="k金">内容 4</van-tab>
         <van-tab title="钻石">内容 5</van-tab>
       </van-tabs>
-      <div class="slideshow">
-        <van-swipe :autoplay="3000" indicator-color="white">
-          <van-swipe-item
-            ><img
-              src="http://www.chowtaiseng.com/image/web//upload/article/20190509/2019050913340216.jpg"
-          /></van-swipe-item>
-          <van-swipe-item>
-            <img
-              src="http://www.chowtaiseng.com/image/web//upload/article/20181116/2018111609352673.jpg"
-          /></van-swipe-item>
-          <van-swipe-item
-            ><img
-              src="http://www.chowtaiseng.com/image/web//upload/article/20190814/2019081416402230.jpg"
-          /></van-swipe-item>
-        </van-swipe>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
+import FlimList from '../../components/FilmList/index'
 export default {
   name: 'shangcheng',
   data() {
     return {
       value: ''
     }
+  },
+  components: {
+    FlimList
   }
 }
 </script>
@@ -55,6 +59,10 @@ export default {
 
   // 头部
   .top {
+    position: fixed;
+    // width: 100%;
+    top: 0;
+    z-index: 9999;
     height: 80px;
     display: flex;
     align-items: center;
@@ -77,25 +85,21 @@ export default {
       font-size: 22px;
     }
   }
-  // 列表
+  .slideshow {
+    margin-top: 80px;
+    img {
+      width: 100%;
+      height: 250px;
+    }
+  }
+  // 标签
   .tabs {
     margin-top: 5px;
     .van-tabs__nav {
-      position: relative;
       justify-content: space-around;
     }
     .van-tabs__line {
       background-color: #a18667;
-    }
-    .van-tabs__content {
-      position: absolute;
-      bottom: -290px;
-    }
-    .slideshow {
-      img {
-        width: 100%;
-        height: 250px;
-      }
     }
   }
 }
