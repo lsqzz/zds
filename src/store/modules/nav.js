@@ -5,15 +5,56 @@ export default {
 
   state() {
     return {
-      data: []
+      data: [], // ajax 请求到的所有数据
+      dataId: '', // 1级分类id
+      leftDataId: '' //2级分类id
     }
   },
 
-  getters: {},
+  getters: {
+    //nav内容左侧数据
+    leftData(state) {
+      let obj = state.data.find(item => {
+        return item.platform_category_id === state.dataId
+      })
+      if (obj) {
+        return obj.son
+      } else {
+        return []
+      }
+    },
+    //nav内容右侧数据
+    rightData(state, getters) {
+      let obj = getters.leftData.find(item => {
+        return item.platform_category_id === state.leftDataId
+      })
+      if (obj) {
+        return obj.son
+      } else {
+        return []
+      }
+    }
+  },
 
   mutations: {
-    setLeftData(state, payload) {
+    //初始化data数据,dataId数据,leftDataId数据
+    setData(state, payload) {
       state.data = payload
+      state.dataId = payload[0].platform_category_id
+      state.leftDataId = payload[0].son[0].platform_category_id
+    },
+    //根据点击事件改变dataId
+    setDataId(state, payload) {
+      state.dataId = payload
+      if (payload === '383') {
+        state.leftDataId = state.data[1].son[0].platform_category_id
+      } else if (payload === '382') {
+        state.leftDataId = state.data[0].son[0].platform_category_id
+      }
+    },
+    //根据点击事件改变leftDataId
+    setLeftDataId(state, payload) {
+      state.leftDataId = payload
     }
   },
 
@@ -27,7 +68,7 @@ export default {
         .then(res => {
           if (res.status === 1) {
             console.log(res.data.data)
-            commit('setLeftData', res.data.data)
+            commit('setData', res.data.data)
           }
         })
     }
