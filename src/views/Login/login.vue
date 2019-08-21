@@ -10,7 +10,20 @@
         </router-link>
         <span> C H O W T A I S E N G </span>
       </div>
-      <div class="loginwin"></div>
+      <div class="loginwin">
+        <div class="username">
+            <img src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/username.png" alt="">
+            <input  type="text" placeholder="请输入账号">
+        </div>
+        <div class="password">
+            <img src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/pwd.png" alt="">
+            <input type="password" placeholder="请输入密码">
+        </div>
+        <div class="sloginbtn">
+          登录
+        </div>
+        <div class="forget">忘记密码</div>
+      </div>
     </div>
   </div>
 </template>
@@ -47,34 +60,62 @@ html {
     }
     .loginwin {
       position: absolute;
+      left: 18px;
       bottom: 0;
       box-sizing: border-box;
-      height: 200px;
-      width: 100%;
+      height: 250px;
+      width: 90%;
       padding: 0 40px;
-      p {
-        color: #fff;
+      background: rgb(255, 255, 255,0.8);
+      .username {
+        margin-top:30px; 
+        height: 40px;
+        width: 260px;
+        line-height: 40px;
+        background: #f6f6f6;
         text-align: center;
-        font-size: 16px;
+        img{
+          height: 20px;
+          margin-right:20px; 
+        }
+        input{
+          
+          background: #f6f6f6;
+          border: none;
+        }
       }
-      .login {
-        height: 70px;
-        width: 300px;
-        background: url('http://www.chowtaiseng.com/ishop/web/theme/web5/image/login.png')
-          no-repeat;
-        background-size: 100% 100%;
-        margin-bottom: 10px;
-        padding-top: 20px;
-        box-sizing: border-box;
+       .password {
+        margin-top:20px; 
+        height: 40px;
+        width: 260px;
+        line-height: 40px;
+        background: #f6f6f6;
+        text-align: center;
+        img{
+          height: 20px;
+          margin-right:20px; 
+        }
+        input{
+          
+          background: #f6f6f6;
+          border: none;
+        }
       }
-      .register {
-        height: 70px;
-        width: 300px;
-        background: url('http://www.chowtaiseng.com/ishop/web/theme/web5/image/sign.png')
-          no-repeat;
-        background-size: 100% 100%;
-        padding-top: 20px;
-        box-sizing: border-box;
+      
+      .sloginbtn{
+        margin-top:30px;
+        height: 40px;
+        width: 260px;
+        background: #c3a374;
+        color: #fff;
+        line-height: 40px;
+        text-align: center;
+      }
+      .forget{
+        margin-top:10px;
+        float: right;
+        color: #646464;
+        font-size: 13px;
       }
     }
   }
