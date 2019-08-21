@@ -1,15 +1,14 @@
 <template>
   <div class="film-list">
     <ul class="film-list_ul">
-      <li class="film-list_li">
-        <div class="xiao">
-          <a href="#">
-            <img
-              src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/sc_shipin1.jpg"
-              alt=""
-            />
-          </a>
-        </div>
+      <li
+        class="film-list_li"
+        v-for="(x, item) in films"
+        :key="item.platform_category_id"
+      >
+        <a href="#">
+          <img :src="x.img" alt="" />
+        </a>
       </li>
     </ul>
   </div>
@@ -17,18 +16,25 @@
 
 <script>
 export default {
-  name: 'filmList'
+  name: 'filmList',
+  props: {
+    films: Array
+  }
 }
 </script>
 
 <style lang="scss">
 .film-list {
-  .film-list_li .xiao img {
-    width: 100px;
+  height: 180px;
+  overflow: hidden;
+  .film-list_ul {
+    margin: 10px 0;
   }
-
-  .film-list_li .da img {
-    width: 160px;
+  .film-list_li {
+    float: left;
+    margin: 3px 5px;
+  }
+  .film-list_li img {
     height: 80px;
   }
 }
