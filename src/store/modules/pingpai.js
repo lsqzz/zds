@@ -43,7 +43,6 @@ export default {
         )
         .then(res => {
           if (res.status === '1') {
-            console.log(res.data[0].article_img)
             commit('setImg', res.data[0].article_img)
           }
         })
@@ -57,7 +56,6 @@ export default {
         )
         .then(res => {
           if (res.status === '1') {
-            console.log(res.data)
             commit('setZbImg', res.data)
           }
         })
@@ -71,7 +69,6 @@ export default {
         )
         .then(res => {
           if (res.status === '1') {
-            console.log(res.data)
             commit('setData', res.data)
           }
         })
