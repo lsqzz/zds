@@ -6,8 +6,10 @@ export default {
     filmList: [], // 商城图片列表
     filmList2: [],
     zhuanti: [], // 专题图片
+
     xihuan: [] // 猜你喜欢
   },
+
   // 专门设置改变stated数据的
   mutations: {
     setFilmList (state, payload) {

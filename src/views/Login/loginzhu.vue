@@ -1,16 +1,29 @@
 <template>
-  <div class="page-loginzhu">
+  <div class="page-login">
     <div class="loginbg">
       <div class="close">
-        <router-link to="/loginzhu">
+        <router-link to="/pingpai">
           <img
-            src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/back.png"
+            src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/close.png"
             alt=""
           />
         </router-link>
         <span> C H O W T A I S E N G </span>
       </div>
-      <div class="loginwin"></div>
+      <div class="loginwin">
+        <router-link to="/login">
+          <div class="login">
+            <p>登录</p>
+            <p>SIGN IN</p>
+          </div>
+        </router-link>
+        <router-link to="/sign">
+          <div class="register">
+            <p>注册</p>
+            <p>REGISTER</p>
+          </div>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -23,13 +36,13 @@ html {
   margin: 0;
   padding: 0;
 }
-.page-loginzhu {
+.page-login {
   height: 100%;
   width: 100%;
 
   .loginbg {
     position: relative;
-    background: url('https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=593405346,3077969193&fm=26&gp=0.jpg')
+    background: url('https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1566368400324&di=4fc00365c0221269eae9dbc49df7b096&imgtype=0&src=http%3A%2F%2Fattachments.gfan.com%2Fforum%2F201412%2F16%2F162803z9768dk7qi8ihd47.jpg')
       no-repeat;
     background-size: 100% 100%;
     width: 100%;
@@ -41,7 +54,7 @@ html {
       padding: 30px;
       box-sizing: border-box;
       img {
-        width: 10px;
+        width: 20px;
         margin-right: 50px;
       }
     }
