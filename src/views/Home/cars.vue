@@ -1,5 +1,5 @@
 <template>
-  <div class="page-cars">
-    <h1>我是购物车页</h1>
+  <div class="page-me">
+    <h1>我是购物车</h1>
   </div>
 </template>

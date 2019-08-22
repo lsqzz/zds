@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from './store'
 
 import vueRouter from 'vue-router'
 
@@ -52,11 +53,38 @@ const routes = [{
 {
   path: '/nav',
   component: () => import('./views/Nav')
+}, {
+  path: '/money',
+  component: () => import('./views/Login/money.vue'),
+  meta: {
+    needLogin: true
+  }
 }
 ]
 
+// 创建路由实例对象
 const router = new vueRouter({
   routes
+})
+// 登录拦截
+router.beforeEach((to, from, next) => {
+  // 将要去的路由是否需要登录状态
+  if (to.meta.needLogin) {
+    // 登录状态的效验
+    if (store.state.login.userInfo) {
+      // 放行
+      next()
+    } else {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    }
+  } else {
+    next()
+  }
 })
 
 export default router
