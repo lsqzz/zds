@@ -1,6 +1,5 @@
 //引入axios实例的模块
 import request from '../../utils/request'
-import { type } from 'os'
 
 export default {
   namespaced: true,
