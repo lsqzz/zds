@@ -35,6 +35,12 @@ const routes = [{
   ]
 },
 {
+  name: 'search',
+  path: '/search/:id',
+  component: () => import('./views/Nav/search.vue')
+},
+
+{
   path: '/loginzhu',
   component: () => import('./views/Login/loginzhu.vue')
 },
@@ -61,7 +67,6 @@ const routes = [{
   }
 }
 ]
-
 // 创建路由实例对象
 const router = new vueRouter({
   routes

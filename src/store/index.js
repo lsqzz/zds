@@ -10,6 +10,7 @@ import login from './modules/login'
 import me from './modules/me'
 import pingpai from './modules/pingpai'
 import nav from './modules/nav'
+import search from './modules/search'
 
 Vue.use(Vuex)
 
@@ -22,6 +23,7 @@ export default new Vuex.Store({
     login,
     me,
     pingpai,
-    nav
+    nav,
+    search
   }
 })

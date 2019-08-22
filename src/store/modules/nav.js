@@ -67,7 +67,6 @@ export default {
         )
         .then(res => {
           if (res.status === 1) {
-            console.log(res.data.data)
             commit('setData', res.data.data)
           }
         })
