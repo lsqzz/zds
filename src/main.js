@@ -2,8 +2,18 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
-import { Tab, Tabs, List, Cell, NavBar, Search, Swipe, SwipeItem } from 'vant'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+import {
+  Tab,
+  Tabs,
+  List,
+  Cell,
+  NavBar,
+  Search,
+  Swipe,
+  SwipeItem
+} from 'vant'
 import './assets/styles/base.scss'
 
 // Vue.use(Toast) //Vue.prototype.$toast = Toast
@@ -18,6 +28,7 @@ Vue.use(Tab)
   .use(Search)
   .use(Swipe)
   .use(SwipeItem)
+  .use(ElementUI)
 
 new Vue({
   store,

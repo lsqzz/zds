@@ -16,23 +16,43 @@
             src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/username.png"
             alt=""
           />
-          <input type="text" placeholder="请输入账号" />
+          <input type="text" placeholder="请输入账号" v-model="username" />
         </div>
         <div class="password">
           <img
             src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/pwd.png"
             alt=""
           />
-          <input type="password" placeholder="请输入密码" />
+          <input type="password" placeholder="请输入密码" v-model="password" />
         </div>
-        <div class="sloginbtn">
+        <button
+          class="sloginbtn"
+          :disabled="!username || !password"
+          @click="handleLogin({ username, password })"
+        >
           登录
-        </div>
+        </button>
         <div class="forget">忘记密码</div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { mapActions } from 'vuex'
+export default {
+  name: 'Login',
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    ...mapActions('login', ['handleLogin'])
+  }
+}
+</script>
 
 <style lang="scss">
 body,
@@ -108,6 +128,7 @@ html {
 
       .sloginbtn {
         margin-top: 30px;
+        border: none;
         height: 40px;
         width: 260px;
         background: #c3a374;

@@ -8,11 +8,9 @@ module.exports = {
     proxy: {
       // key: value key-> 代理的请求的请求前缀 value 要代理到哪里的对象配置
       '/api': {
-        target: 'http://www.chowtaiseng.com',
-        changeOrigin: true,
-        pathRewrite: {
-          '^/api': ''
-        }
+        target: 'http://localhost:9090',
+        changeOrigin: true
+
       }
       // 访问地址如下：
       // http://localhost:8080/api/portal-api/product/category-brands/1
