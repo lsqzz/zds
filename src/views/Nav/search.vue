@@ -96,6 +96,7 @@ export default {
     //点击时设置orderby的值，重新发送请求
     getNavData(value) {
       this.pageNum = 1
+      this.finished = false
       this.orderby = value
       this.clear()
       this.findData()
