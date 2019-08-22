@@ -20,24 +20,34 @@
       <li @click="getNavData('sell_num DESC')">销量</li>
     </ul>
 
-    <ul class="search_context">
-      <li v-for="item in all" :key="item.goods_id">
-        <h3>
-          <img :src="item.pic" alt />
-        </h3>
-        <h4>{{item.goods_name}}</h4>
-        <h5>{{item.goods_aliases_name}}</h5>
-        <h6>
-          <span>￥ {{item.sku_price}}</span>
-          <span>
-            <img
-              src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/search_prodect_bb.png"
-              alt
-            />
-          </span>
-        </h6>
-      </li>
-    </ul>
+    <van-list
+      class="search_context"
+      v-model="loading"
+      :finished="finished"
+      :offset="50"
+      finished-text="没有更多了"
+      @load="onLoad"
+      ref="empty"
+    >
+      <ul>
+        <li v-for="item in all" :key="item.goods_id" @click="goCars(item.good_id)">
+          <h3>
+            <img :src="item.pic" alt />
+          </h3>
+          <h4>{{item.goods_name}}</h4>
+          <h5>{{item.goods_aliases_name}}</h5>
+          <h6>
+            <span>￥ {{item.sku_price}}</span>
+            <span>
+              <img
+                src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/search_prodect_bb.png"
+                alt
+              />
+            </span>
+          </h6>
+        </li>
+      </ul>
+    </van-list>
   </div>
 </template>
 
@@ -48,8 +58,11 @@ export default {
   data() {
     return {
       urlId: '',
-      pageSize: 0,
-      pageNum: 6
+      pageSize: 6,
+      pageNum: 0,
+      loading: false,
+      finished: false,
+      orderby: ''
     }
   },
 
@@ -59,12 +72,21 @@ export default {
 
   methods: {
     ...mapActions('search', ['getData']),
-    ...mapMutations('search', ['getNavData']),
+    ...mapMutations('search', ['getNavData', 'clear']),
     //返回
     back() {
       this.$router.back()
     },
 
+    //跳转到购物车
+    goCars(value) {
+      this.$router.push({
+        path: '/cars',
+        querry: {
+          id: value
+        }
+      })
+    },
     // 获取url地址上的参数
     getUrlId() {
       let id = this.$route.params.id
@@ -73,13 +95,48 @@ export default {
 
     //点击时设置orderby的值，重新发送请求
     getNavData(value) {
-      this.getData({ orderby: value, id: this.urlId })
+      this.pageNum = 1
+      this.orderby = value
+      this.clear()
+      this.findData()
+    },
+
+    //仓库中action 执行请求的函数封装
+    findData() {
+      this.getData({
+        // 其他的参数
+        pageNum: this.pageNum,
+        id: this.urlId,
+        orderby: this.orderby ? this.orderby : '',
+
+        callback: () => {
+          console.log('回调函数')
+          this.loading = false
+
+          // 最终判断是否还有下一页
+          if (this.pageNum >= 3) {
+            this.finished = true
+          }
+        }
+      })
+    },
+
+    //下拉加载
+    onLoad() {
+      // 1. 每次进入到这个方法的时候，都要讲 pageNum + 1
+      this.pageNum++
+      // 2. 调用 仓库中的 action 执行请求，并传递一些参数过去
+      this.findData()
     }
   },
 
   created() {
     this.getUrlId()
-    this.getData({ id: this.urlId })
+    // this.getData({ id: this.urlId })
+  },
+
+  beforeDestroy() {
+    this.clear()
   }
 }
 </script>
@@ -145,10 +202,13 @@ export default {
 //内容
 .search_context {
   flex: 1;
-  overflow: hidden;
   background: #ececec;
   overflow-y: auto;
+  ul {
+    overflow: hidden;
+  }
   li {
+    list-style: none;
     background: white;
     width: 176px;
     float: left;

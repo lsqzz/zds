@@ -16,11 +16,13 @@ export default {
   mutations: {
     // 设置进入页面时获取的总的数据
     setData(state, payload) {
-      state.all = payload
+      state.all.push(...payload)
     },
 
-    // 分页
-    setPageData(state, payload) {}
+    // 清除all中数据
+    clear(state) {
+      state.all = []
+    }
   },
 
   actions: {
@@ -34,15 +36,15 @@ export default {
               cat_id: payload.id,
               platform_type: 5,
               orderby: payload.orderby,
-              page_no: 1
+              page_no: payload.pageNum
             }
           }
         })
         .then(res => {
           if (res.status == 1) {
-            console.log(res.data.goods)
             commit('setData', res.data.goods)
           }
+          payload.callback()
         })
     }
   }
