@@ -36,6 +36,16 @@ const routes = [
     ]
   },
   {
+    name: 'search',
+    path: '/search/:id',
+    component: () => import('./views/Nav/search.vue')
+  },
+
+  {
+    path: '/loginzhu',
+    component: () => import('./views/Login/loginzhu.vue')
+  },
+  {
     path: '/login',
     component: () => import('./views/Login/login.vue')
   },
@@ -50,11 +60,6 @@ const routes = [
   {
     path: '/nav',
     component: () => import('./views/Nav')
-  },
-  {
-    name: 'search',
-    path: '/search/:id',
-    component: () => import('./views/Nav/search.vue')
   }
 ]
 
