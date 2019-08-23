@@ -36,7 +36,8 @@ export default {
               cat_id: payload.id,
               platform_type: 5,
               orderby: payload.orderby,
-              page_no: payload.pageNum
+              page_no: payload.pageNum,
+              q: payload.q
             }
           }
         })
