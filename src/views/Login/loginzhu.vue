@@ -2,7 +2,7 @@
   <div class="page-login">
     <div class="loginbg">
       <div class="close">
-        <router-link to="/pingpai">
+        <router-link to="/me">
           <img
             src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/close.png"
             alt=""
