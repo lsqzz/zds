@@ -6,7 +6,7 @@
         <span>{{data.goods_aliases_name}}</span>
         <div class="box1">
           <em>￥</em>
-          <p>3000</p>
+          <p>{{data.price}}</p>
         </div>
       </div>
       <div class="box2">
@@ -39,7 +39,7 @@
       <div class="shangpin _1">商品信息</div>
       <div class="shangpin _2">
         <ul>
-          <li>款式：</li>
+          <li>款式：{{data.style_name}}</li>
           <li>款号：{{data.goods_code}}</li>
         </ul>
       </div>
