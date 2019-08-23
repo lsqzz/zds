@@ -11,46 +11,6 @@
         <span> C H O W T A I S E N G </span>
       </div>
     </div>
-    <!-- <div class="loginwin">
-      <div class="userfrom">
-        <img
-          src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/phone.png"
-          alt=""
-        />
-        <input
-          type="text"
-          v-model="ruleForm2.tel"
-          auto-complete="off"
-          placeholder="请输入手机"
-        />
-      </div>
-      <div class="userfrom">
-        <img
-          src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/code.png"
-          alt=""
-        />
-        <input type="text" placeholder="验证码" />
-      </div>
-
-      <div class="userfrom">
-        <img
-          src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/pwd.png"
-          alt=""
-        />
-        <input id="iput1" type="password" placeholder="请输入密码" />
-      </div>
-      <div class="userfrom">
-        <img
-          src="http://www.chowtaiseng.com/ishop/web/theme/web5/image/pwd.png"
-          alt=""
-        />
-        <input id="iput2" type="password" placeholder="请确认密码" />
-      </div>
-
-      <div class="sloginbtn">
-        注册
-      </div>
-    </div> -->
     <div class="register-wrapper">
       <div id="register">
         <el-form
@@ -99,7 +59,7 @@
           <el-form-item>
             <el-button
               type="primary"
-              @click="submitForm('ruleForm2')"
+              @click="submitForm(ruleForm2)"
               style="width:100%;"
               >注册</el-button
             >
@@ -112,8 +72,12 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex'
+
 export default {
   name: 'Register',
+  ...mapState('login', ['signInfo']),
+
   data () {
     // <!--验证手机号是否合法-->
     let checkTel = (rule, value, callback) => {
@@ -173,6 +137,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('login', ['handlesign']),
     // <!--发送验证码-->
     sendCode () {
       let tel = this.ruleForm2.tel
@@ -198,19 +163,22 @@ export default {
     },
     // <!--提交注册-->
     submitForm (formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          setTimeout(() => {
-            alert('注册成功')
-            this.$router.push({
-              path: '/login'
-            })
-          }, 400)
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
+      // this.$refs[formName].validate(valid => {
+      //   if (valid) {
+      //     setTimeout(() => {
+      //       alert('注册成功')
+
+      //       this.$router.push({
+      //         path: '/login'
+      //       })
+      //     }, 400)
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
+      console.log(formName)
+      this.handlesign(formName)
     },
     // <!--进入登录页-->
     gotoLogin () {

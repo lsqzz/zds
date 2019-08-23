@@ -135,7 +135,7 @@ export default {
 .page-me {
   .header {
     height: 250px;
-    background: url('http://www.chowtaiseng.com/ishop/web/theme/web5/image/ggzx-1-1-bg.png')
+    background: url('https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2807192592,3085826807&fm=26&gp=0.jpg')
       no-repeat;
     background-size: 100% 100%;
     .head {

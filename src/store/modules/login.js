@@ -10,19 +10,24 @@ export default {
   namespaced: true,
   state: {
     userInfo: userInfo ? JSON.parse(userInfo) : null, // 用户信息
-    token: token || null
+    token: token || null,
+    // 注册信息
+    signinfo: []
   },
 
   // 专门设置改变stated数据的
   mutations: {
-    login(state, payload) {
+    login (state, payload) {
       state.userInfo = payload.userInfo
       state.token = payload.token
+    },
+    sign (state, payload) {
+      state.signinfo = payload
     }
   },
   actions: {
     // 登录方法
-    handleLogin({
+    handleLogin ({
       commit
     }, payload) {
       request.post('http://localhost:8080/api/sign-in', payload).then(res => {
@@ -43,6 +48,23 @@ export default {
         } else {
           // 登录失败
           Toast(res.msg)
+        }
+      })
+    },
+    // 注册
+    handlesign ({
+      commit
+    }, payload) {
+      request.post('http://localhost:8080/api/sign-up', {
+        username: payload.tel,
+        password: payload.checkPass
+      }).then(res => {
+        commit('sign', res)
+        if (res.code === 0) {
+          alert('注册成功')
+          router.push('/login')
+        } else {
+          alert(res.msg)
         }
       })
     }
