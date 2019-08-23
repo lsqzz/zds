@@ -8,7 +8,7 @@
 
       <p>
         <i>Q</i>
-        <input type="text" />
+        <input type="text" v-model="search" />
       </p>
       <button>搜索</button>
     </div>
@@ -62,7 +62,8 @@ export default {
       pageNum: 0,
       loading: false,
       finished: false,
-      orderby: ''
+      orderby: '',
+      search: ''
     }
   },
 
@@ -81,7 +82,7 @@ export default {
     //跳转到购物车
     goCars(value) {
       this.$router.push({
-        path: '/cars',
+        path: '/detail',
         querry: {
           id: value
         }
@@ -108,6 +109,7 @@ export default {
         // 其他的参数
         pageNum: this.pageNum,
         id: this.urlId,
+        q: this.search,
         orderby: this.orderby ? this.orderby : '',
 
         callback: () => {
@@ -115,7 +117,7 @@ export default {
           this.loading = false
 
           // 最终判断是否还有下一页
-          if (this.pageNum >= 3) {
+          if (this.pageNum >= 10) {
             this.finished = true
           }
         }
@@ -127,6 +129,17 @@ export default {
       // 1. 每次进入到这个方法的时候，都要讲 pageNum + 1
       this.pageNum++
       // 2. 调用 仓库中的 action 执行请求，并传递一些参数过去
+      this.findData()
+    }
+  },
+
+  // 监听搜索框的改变
+  watch: {
+    search(newValue, oldValue) {
+      this.pageNum = 1
+      this.finished = false
+      this.clear()
+      this.urlId = ''
       this.findData()
     }
   },
@@ -252,7 +265,8 @@ export default {
         line-height: 25px;
         color: #a18667;
         img {
-          height: 100%;
+          height: 25px;
+          width: 25px;
         }
       }
     }
