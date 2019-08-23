@@ -82,7 +82,7 @@ export default {
     //跳转到购物车
     goCars(value) {
       this.$router.push({
-        path: '/cars',
+        path: '/detail',
         querry: {
           id: value
         }
@@ -265,7 +265,8 @@ export default {
         line-height: 25px;
         color: #a18667;
         img {
-          height: 100%;
+          height: 25px;
+          width: 25px;
         }
       }
     }
