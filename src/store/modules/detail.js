@@ -6,7 +6,8 @@ export default {
   state() {
     return {
       bannerList: [],
-      data: []
+      data: [],
+      moreData: []
     }
   },
 
@@ -25,11 +26,15 @@ export default {
     setBannerList(state, payLoad) {
       state.bannerList = payLoad.goods_photo
       state.data = payLoad
+    },
+
+    setMoreData(state, payLoad) {
+      state.moreData = payLoad
     }
   },
 
   actions: {
-    // 获取导航页左边的数据
+    // 获取轮播图及以下的一些数据
     getBannerList({ commit }, payLoad) {
       request
         .get('/ishop/web/?app_act=api/&method=item.get.item.by.sn', {
@@ -39,9 +44,21 @@ export default {
         })
         .then(res => {
           if (res.status === 1) {
-            console.log(res)
             commit('setBannerList', res.data)
-            console.log(payLoad.id)
+          }
+        })
+    },
+
+    getMore({ commit }, payLoad) {
+      request
+        .get('/ishop/web/?app_act=api/&method=item.list.items', {
+          params: {
+            params: { page_size: 10, cat_id: payLoad.more, platform_type: 5 }
+          }
+        })
+        .then(res => {
+          if (res.status === 1) {
+            commit('setMoreData', res.data.goods)
           }
         })
     }

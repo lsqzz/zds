@@ -63,51 +63,15 @@
     </div>
     <div class="xiangguan">
       <h4>相关产品</h4>
-      <div class="xiang_1">
-        <img
-          src="http://www.chowtaiseng.com/image/web/upload/goods/G0GC0575XL/20190801/2019080116485646.jpg"
-          alt
-        />
+      <div class="xiang_1" v-for="(item) in moreData" :key="item.goods_id">
+        <img :src="item.pic" alt />
         <div class="xiang_2">
-          <h5 class="xiang_name">足金999金箍棒猴头挂坠</h5>
-          <span class="xiang_binding">至尊宝紧箍咒</span>
+          <h5 class="xiang_name">{{item.goods_name}}</h5>
+          <span class="xiang_binding">{{item.goods_aliases_name}}</span>
           <div class="xiang_3">
             <div class="xiang_price">
-              <span class="ng-binding">¥4633.60</span>
+              <span class="ng-binding">¥{{item.sku_price}}</span>
               <!-- ngIf: showSale[key] || z.goods_sale_type==3 || z.iskill==1 -->
-            </div>
-            <img src alt />
-          </div>
-        </div>
-      </div>
-      <div class="xiang_1">
-        <img
-          src="http://www.chowtaiseng.com/image/web/upload/goods/G0GC0575XL/20190801/2019080116485646.jpg"
-          alt
-        />
-        <div class="xiang_2">
-          <h5 class="xiang_name">足金999金箍棒猴头挂坠</h5>
-          <span class="xiang_binding">至尊宝紧箍咒</span>
-          <div class="xiang_3">
-            <div class="xiang_price">
-              <span class="ng-binding">¥4633.60</span>
-              <!-- ngIf: showSale[key] || z.goods_sale_type==3 || z.iskill==1 -->
-            </div>
-            <img src alt />
-          </div>
-        </div>
-      </div>
-      <div class="xiang_1">
-        <img
-          src="http://www.chowtaiseng.com/image/web/upload/goods/G0GC0575XL/20190801/2019080116485646.jpg"
-          alt
-        />
-        <div class="xiang_2">
-          <h5 class="xiang_name">足金999金箍棒猴头挂坠</h5>
-          <span class="xiang_binding">至尊宝紧箍咒</span>
-          <div class="xiang_3">
-            <div class="xiang_price">
-              <span class="ng-binding">¥4633.60</span>
             </div>
             <img src alt />
           </div>
@@ -126,8 +90,8 @@
         <i class="iconfont icon-xihuan1" alt />
         <p>喜欢</p>
       </div>
-      <div class="footer-gouwuche-box ng-scope" ng-click="xianshi.jrgwc()" ng-if="!iskill">
-        <a href="http://localhost:8080/#/cars">加入购物车</a>
+      <div class="footer-gouwuche-box ng-scope" @click="goCars" ng-if="!iskill">
+        <a>加入购物车</a>
       </div>
 
       <div class="footer-likegoumai-box ng-scope" ng-click="xianshi.ljgm()" ng-if="!iskill">
@@ -144,7 +108,9 @@ export default {
   name: 'Detail',
   data() {
     return {
-      urlId: ''
+      urlId: '',
+      //存放猜你喜欢的数据
+      more: ''
     }
   },
   components: {
@@ -152,18 +118,27 @@ export default {
   },
   computed: {
     ...mapGetters('detail', ['bannerListImgs']),
-    ...mapState('detail', ['bannerList', 'data'])
+    ...mapState('detail', ['bannerList', 'data', 'moreData'])
   },
   methods: {
-    ...mapActions('detail', ['getBannerList']),
+    ...mapActions('detail', ['getBannerList', 'getMore']),
     getUrlId() {
       this.urlId = this.$route.params.id
+      this.more = this.$route.params.id2
+    },
+
+    //点击加入购物车
+    goCars() {
+      this.$router.push('/cars')
     }
   },
   created() {
     this.getUrlId()
     this.getBannerList({
       id: this.urlId
+    })
+    this.getMore({
+      more: this.more
     })
   }
 }
@@ -288,7 +263,6 @@ body {
   // background: #ececec;
   padding-top: 20px;
   width: 100%;
-  padding-left: 10px;
   h4 {
     display: flex;
     margin-bottom: 6px;
@@ -316,9 +290,15 @@ body {
       font-size: 14px;
       overflow: hidden;
       padding: 5px 0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
     span {
       font-size: 12px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
     .xiang_3 {
       display: flex;

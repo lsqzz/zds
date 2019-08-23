@@ -84,7 +84,8 @@ export default {
       this.$router.push({
         name: 'detail',
         params: {
-          id: value
+          id: value,
+          id2: this.urlId
         }
       })
     },

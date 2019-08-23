@@ -3,7 +3,7 @@
     <header class="head">
       <div class="tatle">
         <a class="cartBack">
-          <p>返回</p>
+          <p @click="back">返回</p>
         </a>
         <span>购物车</span>
         <h5 class="gwc_bj">编辑</h5>
@@ -53,7 +53,13 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  methods: {
+    back() {
+      this.$router.back()
+    }
+  }
+}
 </script>
 <style lang="scss">
 body {
