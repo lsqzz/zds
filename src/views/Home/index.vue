@@ -1,7 +1,7 @@
 <template>
   <div class="page-home">
     <router-view />
-    <Tabbar :tabs="tabs" />
+    <Tabbar :tabs="tabs" v-show="isShowTab" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   components: {
     Tabbar
   },
-  data () {
+  data() {
     return {
       tabs: [
         {
@@ -47,6 +47,16 @@ export default {
           href: '/me'
         }
       ]
+    }
+  },
+  computed: {
+    isShowTab() {
+      let flag = true
+      if (this.$route.path === '/cars') {
+        flag = false
+      }
+
+      return flag
     }
   }
 }
