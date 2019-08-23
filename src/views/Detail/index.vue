@@ -6,7 +6,7 @@
         <span>{{data.goods_aliases_name}}</span>
         <div class="box1">
           <em>￥</em>
-          <p>{{data.price}}</p>
+          <p>{{data.list['0.0'][0].price}}</p>
         </div>
       </div>
       <div class="box2">
@@ -61,6 +61,59 @@
         class="lazyload"
       />
     </div>
+    <div class="xiangguan">
+      <h4>相关产品</h4>
+      <div class="xiang_1">
+        <img
+          src="http://www.chowtaiseng.com/image/web/upload/goods/G0GC0575XL/20190801/2019080116485646.jpg"
+          alt
+        />
+        <div class="xiang_2">
+          <h5 class="xiang_name">足金999金箍棒猴头挂坠</h5>
+          <span class="xiang_binding">至尊宝紧箍咒</span>
+          <div class="xiang_3">
+            <div class="xiang_price">
+              <span class="ng-binding">¥4633.60</span>
+              <!-- ngIf: showSale[key] || z.goods_sale_type==3 || z.iskill==1 -->
+            </div>
+            <img src alt />
+          </div>
+        </div>
+      </div>
+      <div class="xiang_1">
+        <img
+          src="http://www.chowtaiseng.com/image/web/upload/goods/G0GC0575XL/20190801/2019080116485646.jpg"
+          alt
+        />
+        <div class="xiang_2">
+          <h5 class="xiang_name">足金999金箍棒猴头挂坠</h5>
+          <span class="xiang_binding">至尊宝紧箍咒</span>
+          <div class="xiang_3">
+            <div class="xiang_price">
+              <span class="ng-binding">¥4633.60</span>
+              <!-- ngIf: showSale[key] || z.goods_sale_type==3 || z.iskill==1 -->
+            </div>
+            <img src alt />
+          </div>
+        </div>
+      </div>
+      <div class="xiang_1">
+        <img
+          src="http://www.chowtaiseng.com/image/web/upload/goods/G0GC0575XL/20190801/2019080116485646.jpg"
+          alt
+        />
+        <div class="xiang_2">
+          <h5 class="xiang_name">足金999金箍棒猴头挂坠</h5>
+          <span class="xiang_binding">至尊宝紧箍咒</span>
+          <div class="xiang_3">
+            <div class="xiang_price">
+              <span class="ng-binding">¥4633.60</span>
+            </div>
+            <img src alt />
+          </div>
+        </div>
+      </div>
+    </div>
     <footer class="footer-btn-box">
       <div
         class="footer-kefu-box"
@@ -89,6 +142,11 @@ import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   name: 'Detail',
+  data() {
+    return {
+      urlId: ''
+    }
+  },
   components: {
     Banner
   },
@@ -97,10 +155,16 @@ export default {
     ...mapState('detail', ['bannerList', 'data'])
   },
   methods: {
-    ...mapActions('detail', ['getBannerList'])
+    ...mapActions('detail', ['getBannerList']),
+    getUrlId() {
+      this.urlId = this.$route.params.id
+    }
   },
   created() {
-    this.getBannerList()
+    this.getUrlId()
+    this.getBannerList({
+      id: this.urlId
+    })
   }
 }
 </script>
@@ -110,6 +174,7 @@ a {
 }
 body {
   background: #ececec;
+  width: 100%;
 }
 .nav {
   background: #fff;
@@ -128,16 +193,16 @@ body {
     }
     span {
       font-family: 'PingFangBold';
-      font-size: 24px;
+      font-size: 22px;
       color: #323232;
       padding: 8px;
     }
     em {
-      font-size: 20px;
+      font-size: 18px;
       color: #fb604a;
     }
     p {
-      font-size: 28px;
+      font-size: 24px;
       color: #fb604a;
     }
   }
@@ -150,14 +215,16 @@ body {
     align-items: center;
     align-items: -webkit-center;
     padding: 8px 0;
-    i {
-      font-size: 20px;
-      color: #646464;
-    }
+
     ul {
       display: flex;
       width: 100%;
       justify-content: space-around;
+      li {
+        font-size: 18px;
+        color: #646464;
+        overflow: hidden;
+      }
     }
   }
 }
@@ -171,7 +238,7 @@ body {
     background: #ffffff;
     padding: 12px 0 12px 30px;
     border-bottom: 1px solid #ececec;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
   }
   .youhui2 ul {
@@ -179,7 +246,7 @@ body {
     background: #fff;
     color: #323232;
     font-family: 'PingFangBold';
-    font-size: 18px;
+    font-size: 16px;
     padding: 4px 0 20px 30px;
     li {
       float: left;
@@ -196,7 +263,7 @@ body {
     background: #ffffff;
     padding: 12px 0 12px 30px;
     border-bottom: 1px solid #ececec;
-    font-size: 18px;
+    font-size: 16px;
     font-style: normal;
     ul {
       padding: 30px 0;
@@ -205,25 +272,79 @@ body {
         float: left;
         width: 50%;
         font-family: 'PingFangRegular';
-        font-size: 18px;
+        font-size: 16px;
         color: #323232;
         padding: 8px 0;
       }
     }
   }
 }
+.zhanshi {
+  img {
+    width: 100%;
+  }
+}
+.xiangguan {
+  // background: #ececec;
+  padding-top: 20px;
+  width: 100%;
+  padding-left: 10px;
+  h4 {
+    display: flex;
+    margin-bottom: 6px;
+    background: #ffffff;
+    // padding-left: 28px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  .xiang_1 {
+    margin-left: 5px;
+    width: 46%;
+    position: relative;
+    background: #fff;
+    float: left;
+    margin-bottom: 12px;
+    // height: 300px;
+    img: {
+      width: 100%;
+      vertical-align: middle;
+    }
+  }
+  .xiang_2 {
+    padding-left: 10px;
+    h5 {
+      font-size: 14px;
+      overflow: hidden;
+      padding: 5px 0;
+    }
+    span {
+      font-size: 12px;
+    }
+    .xiang_3 {
+      display: flex;
+
+      padding: 0 4px;
+      .ng-binding {
+        color: #a18667;
+        font-family: 'PingFangBold';
+        font-size: 14px;
+      }
+    }
+  }
+}
+
 .footer-btn-box {
   display: box;
   display: -webkit-box;
   display: -webkit-flex;
-  height: 70px;
+  height: 60px;
   position: fixed;
   left: 0;
   bottom: 0;
   right: 0;
   .footer-kefu-box {
     background: #ffffff;
-    width: 70px;
+    width: 60px;
     text-align: center;
     border-top: 1px solid #dcdcdc;
     border-right: 1px solid #dcdcdc;
@@ -242,7 +363,7 @@ body {
     background: #d77e6b;
     color: #ffffff;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 22px;
     display: box;
     display: -webkit-box;
     display: -webkit-flex;
@@ -258,7 +379,7 @@ body {
     background: #e1c584;
     color: #854806;
     font-weight: normal;
-    font-size: 24px;
+    font-size: 22px;
     display: box;
     display: -webkit-box;
     display: -webkit-flex;
@@ -291,7 +412,7 @@ footer {
     margin-inline-end: 0px;
   }
   .iconfont {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 .footer-btn-box .footer-kefu-box > p {

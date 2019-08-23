@@ -50,7 +50,7 @@ export default {
 </script>
 <style lang="scss">
 .swiper-container {
-  height: 420px;
+  height: 400px;
 
   img {
     width: 100%;

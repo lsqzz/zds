@@ -30,7 +30,7 @@
       ref="empty"
     >
       <ul>
-        <li v-for="item in all" :key="item.goods_id" @click="goCars(item.good_id)">
+        <li v-for="item in all" :key="item.goods_id" @click="goCars(item.goods_id)">
           <h3>
             <img :src="item.pic" alt />
           </h3>
@@ -79,11 +79,11 @@ export default {
       this.$router.back()
     },
 
-    //跳转到购物车
+    //跳转到详情页
     goCars(value) {
       this.$router.push({
-        path: '/detail',
-        querry: {
+        name: 'detail',
+        params: {
           id: value
         }
       })
